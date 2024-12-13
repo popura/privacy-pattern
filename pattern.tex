@@ -1,0 +1,22 @@
+\documentclass[b4paper,dvipdfmx]{article}
+\usepackage[margin=0mm]{geometry}
+\usepackage{xcolor}
+\usepackage{tikz}
+
+\begin{document}
+\thispagestyle{empty}
+
+\begin{tikzpicture}[remember picture,overlay]
+    % ページ全体に矩形を敷き詰める
+    \fill[gray!40] (current page.south west) rectangle (current page.north east);
+    % さらにパターンをかけるなら、細かいラインを描画
+    % 例えば斜めラインパターン
+    \begin{scope}
+        \clip (current page.south west) rectangle (current page.north east);
+        \foreach \x in {-50,-49.8,...,50}{
+            \draw[gray!80] (\x,-50) -- (\x+50,50);
+        }
+    \end{scope}
+\end{tikzpicture}
+
+\end{document}
